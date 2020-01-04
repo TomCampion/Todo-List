@@ -62,11 +62,6 @@ class Task
         return $this->createdAt;
     }
 
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
     public function getTitle()
     {
         return $this->title;
