@@ -60,6 +60,7 @@ class DefaultControllerTest extends WebTestCase
         $user->setEmail('test@mail.com');
         $user->setUsername('test');
         $user->setPassword('test');
+        $user->setRoles(array('ROLE_USER'));
 
         $this->em->persist($user);
 
