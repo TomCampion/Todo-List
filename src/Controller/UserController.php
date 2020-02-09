@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +13,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/users", name="user_list")
+     * @Route("/users", name="user_list", methods={"GET"})
      */
     public function listAction()
     {
@@ -20,7 +21,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/users/create", name="user_create")
+     * @Route("/users/create", name="user_create", methods={"GET","POST"})
      */
     public function createAction(Request $request, UserPasswordEncoderInterface $encoder)
     {
@@ -34,6 +35,9 @@ class UserController extends AbstractController
             $password = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 
+            //bugfix empty ROLE_USER
+            $user->setRoles($user->getRoles());
+
             $em->persist($user);
             $em->flush();
 
@@ -46,7 +50,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/users/{id}/edit", name="user_edit")
+     * @Route("/users/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
     public function editAction(User $user, Request $request, UserPasswordEncoderInterface $encoder)
     {
