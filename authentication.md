@@ -1,7 +1,7 @@
 Authentication
 ======================
 
-##Configuration
+## Configuration
 
 The security configuration is set up in app/config/security.yaml
 
@@ -45,7 +45,7 @@ security:
         - { path: ^/, roles: ROLE_USER }
 ```
 
-##Implementation of authentication
+## Implementation of authentication
 To implement authentication I simply followed the [Symfony guide](https://symfony.com/doc/current/security/form_login_setup.html).
 
 Firstly thanks to the Symfony MakerBundle I generated the useful files for authentication via the command
@@ -100,7 +100,7 @@ public function onAuthenticationSuccess(Request $request, TokenInterface $token,
     }
 ```
 
-##How authentication works
+## How authentication works
 
 To connect, the user will access the page where the connection form is located (/login).<br>
 From this form, the user will enter a username and password and submit the form, once the form is submitted, it is the class LoginFormAuthenticator (src/Controller/Security/LoginFormAuthenticator.php)
