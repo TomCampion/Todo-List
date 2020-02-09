@@ -1,6 +1,8 @@
 ToDoList
 ========
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c09c406a62164912b27ee2b9aa34ff5e)](https://app.codacy.com/manual/TomCampion/Todo-List?utm_source=github.com&utm_medium=referral&utm_content=TomCampion/Todo-List&utm_campaign=Badge_Grade_Dashboard)
+
 Todo List is an application allowing you to manage your daily tasks easily !
 
 ## Installation
