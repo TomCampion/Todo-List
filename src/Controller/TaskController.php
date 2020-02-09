@@ -47,11 +47,15 @@ class TaskController extends AbstractController
      */
     public function editAction(Task $task, Request $request)
     {
+        if($this->isGranted('TASK_EDIT_DELETE', $task) === false) {
+            $this->addFlash("error", "Vous n'êtes pas l'auteur de cette tâche !");
+            return $this->redirectToRoute('task_list');
+        }
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'La tâche a bien été modifiée.');
@@ -83,11 +87,15 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($task);
-        $em->flush();
+        if($this->isGranted('TASK_EDIT_DELETE', $task) === false){
+            $this->addFlash("error", "Vous n'êtes pas l'auteur de cette tâche !");
+        }else{
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($task);
+            $em->flush();
 
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
+            $this->addFlash('success', 'La tâche à bien été supprimée.');
+        }
 
         return $this->redirectToRoute('task_list');
     }
