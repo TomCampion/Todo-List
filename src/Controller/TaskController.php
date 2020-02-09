@@ -87,6 +87,7 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task)
     {
+
         if($this->isGranted('TASK_EDIT_DELETE', $task) === false){
             $this->addFlash("error", "Vous n'êtes pas l'auteur de cette tâche !");
         }else{
