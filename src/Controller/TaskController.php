@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/tasks", name="task_list")
+     * @Route("/tasks", name="task_list", methods={"GET"})
      */
     public function listAction()
     {
@@ -19,7 +19,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/tasks/create", name="task_create")
+     * @Route("/tasks/create", name="task_create", methods={"GET","POST"})
      */
     public function createAction(Request $request)
     {
@@ -43,7 +43,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/tasks/{id}/edit", name="task_edit")
+     * @Route("/tasks/{id}/edit", name="task_edit", methods={"GET","POST"})
      */
     public function editAction(Task $task, Request $request)
     {
@@ -70,7 +70,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/tasks/{id}/toggle", name="task_toggle")
+     * @Route("/tasks/{id}/toggle", name="task_toggle", methods={"GET","POST"})
      */
     public function toggleTaskAction(Task $task)
     {
@@ -83,7 +83,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/tasks/{id}/delete", name="task_delete")
+     * @Route("/tasks/{id}/delete", name="task_delete", methods={"DELETE"})
      */
     public function deleteTaskAction(Task $task)
     {
