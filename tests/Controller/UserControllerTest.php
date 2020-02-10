@@ -93,7 +93,7 @@ class UserControllerTest extends WebTestCase
         $this->assertEquals($username, $user->getUsername());
         $this->assertEquals(true, $this->encoder->isPasswordValid($user, $password));
         $this->assertEquals($mail, $user->getEmail());
-        $this->assertEquals(array('ROLE_ADMIN', 'ROLE_USER'), $user->getRoles());
+        $this->assertEquals(array('ROLE_ADMIN'), $user->getRoles());
     }
 
     private function logIn()
